@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassMeet</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.svg" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+
+        }
+
+    </style>
+</head>
+
+<body class="h-screen overflow-y-hidden transition  delay-50 bg-black py-32">
+    <div class="  grid grid-cols-9 gap-2 max-w-6xl mx-auto text-center text-gray-500">
+        <p class=" ">11-12 AM</p>
+        <p class=" ">12-1 PM</p>
+        <p class=" ">1-2 PM</p>
+        <p class=" ">2-3 PM</p>
+        <p class=" ">3-4 PM</p>
+        <p class=" ">4-5 PM</p>
+        <p class=" ">5-6 PM</p>
+        <p class=" ">6-7 PM</p>
+        <p class=" ">7-8 PM</p>
+
+    </div>
+    <div class="grid grid-cols-9 gap-2 max-w-6xl mx-auto text-center text-gray-500" id="taskBoard">
+
+
+
+
+    </div>
+    <div class="flex items-end space-x-2 justify-end max-w-6xl mx-auto mt-4">
+        <button class="border-2 border-yellow-500 text-yellow-500 px-6 py-4 rounded-3xl"
+            onclick="location.reload()">Reset
+        </button>
+        <button class="bg-yellow-500 text-black px-6 py-4 rounded-3xl" onclick="setTimetable()">Save</button>
+    </div>
+
+    <form method="post" action="/fixTimetable" id="fixedTT">
+        <input type="hidden" id="hiddenMon" name="Mon">
+        <input type="hidden" id="hiddenTue" name="Tue">
+        <input type="hidden" id="hiddenWed" name="Wed">
+        <input type="hidden" id="hiddenThu" name="Thu">
+        <input type="hidden" id="hiddenFri" name="Fri">
+        <input type="hidden" id="hiddenSat" name="Sat">
+        <input type="hidden" id="hiddenSun" name="Sun">
+    </form>
+
+
+    <script>
+        const str = '<%=allTasks[0].task%>'
+        const arr = str.split(',');
+
+        for (var k = 0; k < 63; k++) {
+            const taskBox = document.createElement('div')
+            var randomInt = Math.floor(Math.random() * arr.length);
+            taskBox.innerHTML = arr[randomInt]
+            if (k >= 0 && k < 9) {
+                taskBox.classList = "bg-gray-900 text-white px-4 py-6 rounded-3xl mon"
+            } else if (k >= 9 && k < 18) {
+                taskBox.classList = "bg-gray-900 text-white px-4 py-6 rounded-3xl tue"
+            } else if (k >= 18 && k < 27) {
+                taskBox.classList = "bg-gray-900 text-white px-4 py-6 rounded-3xl wed"
+            } else if (k >= 27 && k < 36) {
+                taskBox.classList = "bg-gray-900 text-white px-4 py-6 rounded-3xl thu"
+            } else if (k >= 36 && k < 45) {
+                taskBox.classList = "bg-gray-900 text-white px-4 py-6 rounded-3xl fri"
+            } else if (k >= 45 && k < 54) {
+                taskBox.classList = "bg-gray-900 text-white px-4 py-6 rounded-3xl sat"
+            } else {
+                taskBox.classList = "bg-gray-900 text-white px-4 py-6 rounded-3xl sun"
+            }
+
+            document.getElementById('taskBoard').append(taskBox)
+
+        }
+
+        function setTimetable() {
+            monTask = []
+            tueTask = []
+            wedTask = []
+            thuTask = []
+            friTask = []
+            satTask = []
+            sunTask = []
+
+
+            mondayTasks = document.getElementsByClassName('mon')
+            for (p = 0; p < mondayTasks.length; p++) {
+                monTask.push(mondayTasks[p].innerHTML)
+            }
+            document.getElementById('hiddenMon').value = monTask
+
+
+            tuesdayTasks = document.getElementsByClassName('tue')
+            for (p = 0; p < tuesdayTasks.length; p++) {
+                tueTask.push(tuesdayTasks[p].innerHTML)
+            }
+            document.getElementById('hiddenTue').value = tueTask
+
+
+            wednesdayTasks = document.getElementsByClassName('wed')
+            for (p = 0; p < wednesdayTasks.length; p++) {
+                wedTask.push(wednesdayTasks[p].innerHTML)
+            }
+            document.getElementById('hiddenWed').value = wedTask
+
+
+            thursdayTasks = document.getElementsByClassName('thu')
+            for (p = 0; p < thursdayTasks.length; p++) {
+                thuTask.push(thursdayTasks[p].innerHTML)
+            }
+            document.getElementById('hiddenThu').value = thuTask
+
+            fridayTasks = document.getElementsByClassName('fri')
+            for (p = 0; p < fridayTasks.length; p++) {
+                friTask.push(fridayTasks[p].innerHTML)
+            }
+            document.getElementById('hiddenFri').value = friTask
+
+
+            saturdayTasks = document.getElementsByClassName('sat')
+            for (p = 0; p < saturdayTasks.length; p++) {
+                satTask.push(saturdayTasks[p].innerHTML)
+            }
+            document.getElementById('hiddenSat').value = satTask
+
+            sundayTasks = document.getElementsByClassName('sun')
+            for (p = 0; p < sundayTasks.length; p++) {
+                sunTask.push(sundayTasks[p].innerHTML)
+            }
+            document.getElementById('hiddenSun').value = sunTask
+
+            document.getElementById('fixedTT').submit()
+
+
+        }
+
+    </script>
+</body>
+
+</html>
