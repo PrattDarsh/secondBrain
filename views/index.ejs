@@ -18,12 +18,12 @@
     </style>
 </head>
 
-<body class=" transition rounded delay-50 bg-black border-t-4 border-yellow-500">
+<body class=" transition rounded delay-50 bg-black border-t-4 border-yellow-500 overflow-x-hidden">
     <section class="max-w-6xl mx-auto py-24">
         <div class="md:flex items-center justify-center md:space-x-12">
             <img src="images/clock.svg" class="md:max-w-lg p-4" alt="">
             <div class="">
-                <div class="flex items-center justify-center space-x-4">
+                <div class="grid grid-cols-2 items-center justify-center space-x-4">
                     <div class="space-y-4 text-gray-500 text-right">
                         <p>11 AM - 12 AM</p>
                         <p>12 AM - 1 PM</p>
@@ -57,39 +57,29 @@
                             <% if(timetable.length==0) {%>
                                 <%for(var i=11;i< 20;i++){%>
                                     <%randomTask=Math.floor(Math.random() * tasks.length)%>
-                                        <input name="<%='taskAt'+i%>"
-                                            class="text-center md:text-left bg-transparent block w-fit" id="<%=i%>"
+                                        <input name="<%='taskAt'+i%>" class=" bg-transparent block w-fit" id="<%=i%>"
                                             value="<%=tasks[randomTask].task%>">
                                         <% } %>
                                             <% }else{ %>
 
-                                                <input name="taskAt11"
-                                                    class="text-center md:text-left bg-transparent block" id="11"
+                                                <input name="taskAt11" class=" bg-transparent block" id="11"
                                                     value=" <%=timetable[0].taskAt11%>">
-                                                <input name="taskAt12"
-                                                    class=" text-center md:text-left bg-transparent block" id="12"
+                                                <input name="taskAt12" class="  bg-transparent block" id="12"
                                                     value=" <%=timetable[0].taskAt12%>">
-                                                <input name="taskAt13"
-                                                    class="text-center md:text-left bg-transparent block" id="13"
+                                                <input name="taskAt13" class="bg-transparent block" id="13"
                                                     value=" <%=timetable[0].taskAt13%>">
-                                                <input name="taskAt14"
-                                                    class=" text-center md:text-left bg-transparent block" id="14"
+                                                <input name="taskAt14" class="  bg-transparent block" id="14"
                                                     value=" <%=timetable[0].taskAt14%>">
-                                                <input name="taskAt15"
-                                                    class="text-center md:text-left bg-transparent block" id="15"
+                                                <input name="taskAt15" class=" bg-transparent block" id="15"
                                                     value=" <%=timetable[0].taskAt15%>">
-                                                <input name="taskAt16"
-                                                    class="text-center md:text-left bg-transparent block" id="16"
+                                                <input name="taskAt16" class=" bg-transparent block" id="16"
                                                     value=" <%=timetable[0].taskAt16%>">
-                                                <input name="taskAt17"
-                                                    class="text-center md:text-left bg-transparent block" id="17"
+                                                <input name="taskAt17" class=" bg-transparent block" id="17"
                                                     value=" <%=timetable[0].taskAt17%>">
-                                                <input name="taskAt18"
-                                                    class="text-center md:text-left bg-transparent block" id="18"
+                                                <input name="taskAt18" class=" bg-transparent block" id="18"
                                                     value=" <%=timetable[0].taskAt18%>">
 
-                                                <input name="taskAt19"
-                                                    class="text-center md:text-left bg-transparent block" id="19"
+                                                <input name="taskAt19" class=" bg-transparent block" id="19"
                                                     value=" <%=timetable[0].taskAt19%>">
 
                                                 <% } %>
@@ -103,7 +93,7 @@
                 </div>
                 <div class="flex items-center justify-center md:block">
                     <button type="submit"
-                        class="mt-6 md:w-1/2 w-full mx-2  text-yellow-500 border-2 border-yellow-500 px-12 py-4 rounded-3xl"
+                        class="mt-6  w-full mx-2  text-yellow-500 border-2 border-yellow-500 px-12 py-4 rounded-3xl"
                         onclick="submitForm()">Commit</button>
                 </div>
             </div>
