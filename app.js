@@ -143,6 +143,15 @@ app.post("/timetable", (req, res) => {
   });
 });
 
+app.post("/delete", (req, res) => {
+  task.deleteOne({ task: req.body.taskName }).then((err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.redirect("/");
+  });
+});
+
 app.listen(process.env.PORT || 3000, (req, res) => {
   console.log("Server Running");
 });
